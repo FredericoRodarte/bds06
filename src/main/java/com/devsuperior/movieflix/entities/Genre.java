@@ -35,7 +35,7 @@ public class Genre implements Serializable{
 		this.name = name;
 		this.movies = movies;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
