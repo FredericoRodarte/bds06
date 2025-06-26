@@ -18,7 +18,12 @@ public class GenreService {
 	private GenreRepository repository;
 	
 	public List<GenreDTO> findAll() {
-		List<Genre> list = repository.findAll(Sort.by("id"));
-		return list.stream().map(x -> new GenreDTO(x)).collect(Collectors.toList());
+	    List<Genre> list = repository.findAll(Sort.by("id"));
+	    
+	    list.forEach(g -> System.out.println(g.getId()));
+	    
+	    return list.stream()
+	               .map(GenreDTO::new)
+	               .collect(Collectors.toList());
 	}
 }

@@ -29,7 +29,7 @@ public class Review implements Serializable{
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	Review(){
+	public Review(){
 	}
 
 	public Review(Long id, String text) {

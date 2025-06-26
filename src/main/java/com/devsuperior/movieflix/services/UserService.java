@@ -54,5 +54,9 @@ public class UserService implements UserDetailsService {
 		return new UserDTO(user);
 	}
 		
-
+	@Transactional(readOnly = true)
+	public User findProfileEntity() {
+		User user = authService.getUserAutenticated();		
+		return user;
+	}
 }

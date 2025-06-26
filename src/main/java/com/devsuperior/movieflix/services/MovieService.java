@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.movieflix.dto.MovieDTO;
+import com.devsuperior.movieflix.dto.MovieNoGenreDTO;
 import com.devsuperior.movieflix.entities.Movie;
-import com.devsuperior.movieflix.repositories.GenreRepository;
 import com.devsuperior.movieflix.repositories.MovieRepository;
 import com.devsuperior.movieflix.services.exceptions.ResourceNotFoundException;
 
@@ -20,8 +20,8 @@ public class MovieService {
 	@Autowired
 	private MovieRepository repository;
 	
-	@Autowired
-	private GenreRepository genereRepository;	
+	//@Autowired
+	//private GenreRepository genereRepository;	
 	
 	@Transactional(readOnly = true)
 	public MovieDTO findById(Long id) {
@@ -42,13 +42,15 @@ public class MovieService {
 	}	
 	
     @Transactional(readOnly = true)
-    public Page<MovieDTO> findByGenre(Long genreId, Pageable pageable) {
+    public Page<MovieNoGenreDTO> findByGenre(Long genreId, Pageable pageable) {
         Page<Movie> result;
        
         result = repository.findMoviesByGenre(genreId, pageable);
 
         // Converte entidades para DTOs
-        return result.map(movie -> new MovieDTO(movie));
+        return result.map(movie -> new MovieNoGenreDTO(movie));
     }
-	
+ 
+
+
 }
